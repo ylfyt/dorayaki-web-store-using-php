@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+    background-color: gray;
+}
+
+.navbar .search-bar{
+    background-color: rgb(201, 201, 201);
+    padding: 15px;
+}
+
+.navbar .menus a{
+    margin-left: 10px;
+    background-color: rgb(201, 201, 201);
+    padding: 15px;
+}
+
+
