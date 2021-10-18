@@ -6,12 +6,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-
-.container {
-    margin: 20px 20px 0 20px;
-}
-
-
 /* NAVBAR */
 .navbar {
     display: flex;
@@ -33,3 +27,52 @@
 }
 /* END NAVBAR */
 
+
+.container {
+    margin: 20px 20px 0 20px;
+}
+
+.dorayaki-container {
+    margin-top: 20px;
+    display: flex;
+    align-self: flex-end;
+    flex-flow: wrap row;
+    justify-content: space-evenly;
+}
+
+.dorayaki-container a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Card */
+.card{
+    padding: 20px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 150px;
+    height: 250px;
+    margin-bottom: 20px;
+}
+
+.card .info {
+    text-align: center;
+}
+
+.info .name {
+    font-size: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.info .price {
+    font-size: 20px;
+}
+
+.info .desc {
+    font-size: 15px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

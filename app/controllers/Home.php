@@ -4,10 +4,13 @@ class Home extends Controller{
 
     public function index()
     {
+        $dorayaki = $this->model('Dorayaki_model')->getAllDorayaki();
+
         $data = [
             'title' => 'Dashboard',
             'isAdmin' => true,
-            'username' => 'Budy'
+            'username' => 'Budy',
+            'dorayaki' => $dorayaki
         ];
 
         $this->view('templates/header', $data);
