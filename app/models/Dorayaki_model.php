@@ -54,9 +54,52 @@ class Dorayaki_model {
         return $result;        
     }
 
+    public function getNDorayakiSortedFilter($n, $offset=0, $desc=true, $query)
+    {
+        if ($desc){
+            $query = "SELECT dorayaki.id as id, nama, harga, url, deskripsi, SUM(num) as total
+            FROM dorayaki
+            LEFT JOIN pembelian ON dorayaki.id = pembelian.dorayaki_id
+            WHERE nama LIKE '%$query%' OR deskripsi LIKE '%$query%'
+            GROUP BY dorayaki.id
+            ORDER BY total DESC
+            LIMIT :n
+            OFFSET :offset";
+        }
+        else{
+            $query = "SELECT dorayaki.id as id, nama, harga, url, deskripsi, SUM(num) as total
+            FROM dorayaki
+            LEFT JOIN pembelian ON dorayaki.id = pembelian.dorayaki_id
+            WHERE nama LIKE '%$query%' OR deskripsi LIKE '%$query%'
+            GROUP BY dorayaki.id
+            ORDER BY total ASC
+            LIMIT :n
+            OFFSET :offset";
+        }
+
+        $bind = [
+            'n' => $n,
+            'offset' => $offset
+        ];
+
+        $this->db->query($query, $bind);
+        $result = $this->db->resultSet();
+        return $result;        
+    }
+
     public function getNumOfDorayaki()
     {
         $query = "SELECT count(id) FROM $this->table";
+        $this->db->query($query);
+        $result = $this->db->single();
+        return $result;  
+    }
+
+    public function getNumOfDorayakiFilter($q)
+    {
+        $query = "SELECT count(id) 
+        FROM $this->table
+        WHERE nama LIKE '%$q%' OR deskripsi LIKE '%$q%'";
         $this->db->query($query);
         $result = $this->db->single();
         return $result;  

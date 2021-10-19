@@ -1,9 +1,7 @@
 <div class="navbar">
     <div class="search-bar">
-        <form action="">
-            <input id="query" type="text">
-            <button>Search</button>
-        </form>
+        <input id="query" type="text">
+        <button onclick="search()">Search</button>
     </div>
     <div class="menus">
         <?php if ($data['isAdmin']) : ?>

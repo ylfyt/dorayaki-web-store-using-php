@@ -11,7 +11,7 @@
             <?php endif; ?>
         </div>
     <?php endif; ?>
-    <div class="dorayaki-container">
+    <div class="dorayaki-container" id="dorayaki-container">
         <?php if (count($data['dorayaki']) > 0) : ?>
             <?php foreach($data['dorayaki'] as $dora) : ?>
                 <a href="<?= BASEURL?>/dorayaki/<?= $dora['id']?>">
