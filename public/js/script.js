@@ -1,24 +1,53 @@
 var BASEURL = "http://localhost/if-3110-2021-01-23";
 
-function search(){
+function next(){
+    var page = document.getElementById('page-number').innerText;
+    var query = document.getElementById('query').value;
+
+    if (query == ''){
+        query = 'null';
+    }
+    search(page, query);
+}
+
+function prev(){
+    var page = document.getElementById('page-number').innerText;
+    var query = document.getElementById('query').value;
+
+    if (query == ''){
+        query = 'null';
+    }
+    search(page-2, query);
+}
+
+function getSearch(){
+    var query = document.getElementById('query-input').value;
+    document.getElementById('query').value = query;
+    if (query == ''){
+        query = 'null';
+    }
+    var page = 0;
+    search(page, query);
+}
+
+
+function search(page, query){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200){
             var resJson = JSON.parse(this.responseText);
-            updateDorayakiContainer(resJson);
+            updateDashboard(resJson);
         }
     }
+    var url = BASEURL + "/searchdorayaki/" + query + "/" + page;
 
-    var query = document.getElementById('query').value;
-    if (query == ''){
-        query = 'null';
-    }
-
-    xhttp.open("GET", BASEURL + "/dorayaki/getndorayakisortedfilter/" + query + "/10/0");
+    xhttp.open("GET", url);
     xhttp.send();
 }
 
-function updateDorayakiContainer(dorayaki){
+function updateDashboard(data){
+
+    var dorayaki = data.dorayaki;
     var container = document.getElementById('dorayaki-container');
     container.innerHTML = "";
 
@@ -34,6 +63,19 @@ function updateDorayakiContainer(dorayaki){
 
         container.innerHTML += card;
     });
-} 
+
+    var pageNav = document.getElementById('page-navigator');
+    pageNav.innerHTML = "";
+    if (dorayaki.length != 0){
+        if (!data.first){
+            pageNav.innerHTML += '<div id="prev" onclick="prev();"><</div>';
+        }
+        var number = parseInt(data.page) + 1
+        pageNav.innerHTML += '<p id="page-number">' + number + '</p>';
+        if (!data.last){
+            pageNav.innerHTML += '<div id="next" onclick="next();">></div>';
+        }
+    }
+}
 
     

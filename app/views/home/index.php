@@ -1,13 +1,13 @@
 <div class="container">
     <h1>Dashboard</h1>
     <?php if (count($data['dorayaki']) >= 0) : ?>
-        <div class="page-navigator">
+        <div class="page-navigator" id="page-navigator">
             <?php if (!$data['first']) : ?>
-                <a href="<?= BASEURL ?>/page/<?= $data['page']-1 ?>"><</a>
+                <div id="prev" onclick="prev();"><</div>
             <?php endif; ?>
             <p id="page-number"><?= $data['page']+1; ?></p>
             <?php if (!$data['last']) : ?>
-                <a href="<?= BASEURL ?>/page/<?= $data['page']+1 ?>">></a>
+                <div id="next" onclick="next();">></div>
             <?php endif; ?>
         </div>
     <?php endif; ?>

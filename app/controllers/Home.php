@@ -4,18 +4,28 @@ class Home extends Controller{
 
     private $nDorayakiInOnePage = 10;
 
-    public function index($arg = null)
+    public function index()
     {
-        if (is_null($arg)){
-            $this->page();
-        }
-        else {
-            // TODO: Page not found harusnya
-            $this->page();
-        }
+        $data = [
+            'title' => 'Dashboard',
+            'isAdmin' => false,
+            'username' => 'Budy'
+        ];
+
+        $result = $this->getdorayakipage(0);
+        $data['dorayaki'] = $result['dorayaki'];
+        $data['page'] = $result['page'];
+        $data['first'] = $result['first'];
+        $data['last'] = $result['last'];
+        $data['query'] = '';
+
+        $this->view('templates/header', $data);
+        $this->view('templates/navbar', $data);
+        $this->view('home/index', $data);
+        $this->view('templates/footer', $data);
     }
 
-    public function page($p=0)
+    public function getdorayakipage($p, $query='')
     {
         try {
             $p = (int)$p;
@@ -28,26 +38,27 @@ class Home extends Controller{
         $offset = $p * $this->nDorayakiInOnePage;
         $limit = $this->nDorayakiInOnePage;
 
-        $dorayaki = $this->model('Dorayaki_model')->getNDorayakiSorted($limit, $offset, true);
-        $numOfDorayaki = $this->model('Dorayaki_model')->getNumOfDorayaki()["count(id)"];
+        $dorayaki = $this->model('Dorayaki_model')->getNDorayakiSortedFilter($limit, $offset, true, $query);
+        $numOfDorayaki = $this->model('Dorayaki_model')->getNumOfDorayakiFilter($query)["count(id)"];
 
         $first = ($p == 0);
         $last = ($offset + count($dorayaki) >= (int)$numOfDorayaki);
 
         $data = [
-            'title' => 'Dashboard',
-            'isAdmin' => false,
-            'username' => 'Budy',
             'dorayaki' => $dorayaki,
             'page' => $p,
             'first' => $first,
             'last' => $last
         ];
 
-        $this->view('templates/header', $data);
-        $this->view('templates/navbar', $data);
-        $this->view('home/index', $data);
-        $this->view('templates/footer', $data);
+        return $data;
+    }
+
+    public function searchdorayaki($query, $page)
+    {
+        if ($query == 'null') $query = '';
+        $result = $this->getdorayakipage($page, $query);
+        echo json_encode($result);
     }
 
 }
