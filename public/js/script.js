@@ -1,5 +1,15 @@
 var BASEURL = "http://localhost/if-3110-2021-01-23";
 
+// Get the input field
+var input = document.getElementById("query-input");
+
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    getSearch();
+  }
+});
+
 function next(){
     var page = document.getElementById('page-number').innerText;
     var query = document.getElementById('query').value;
@@ -22,6 +32,7 @@ function prev(){
 
 function getSearch(){
     var query = document.getElementById('query-input').value;
+    document.getElementById('query-input').value = '';
     document.getElementById('query').value = query;
     if (query == ''){
         query = 'null';
@@ -75,6 +86,9 @@ function updateDashboard(data){
         if (!data.last){
             pageNav.innerHTML += '<div id="next" onclick="next();">></div>';
         }
+    }
+    else{
+        container.innerHTML += '<p>Dorayaki Tidak ditemukan</p>';
     }
 }
 
