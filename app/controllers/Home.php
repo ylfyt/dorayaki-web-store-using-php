@@ -6,6 +6,10 @@ class Home extends Controller{
 
     public function index($arg = null)
     {
+        // $suc = $this->model('Pembelian_model')->insert(1, 1, 10);
+        // var_dump($suc);
+        // die;
+
         if (is_null($arg)){
             $this->page();
         }
