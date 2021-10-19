@@ -8,8 +8,9 @@ class Home extends Controller{
     {
         $data = [
             'title' => 'Dashboard',
-            'isAdmin' => false,
-            'username' => 'Budy'
+            'isAdmin' => true,
+            'username' => 'Budy',
+            'dashboard' => true
         ];
 
         $result = $this->getdorayakipage(0);

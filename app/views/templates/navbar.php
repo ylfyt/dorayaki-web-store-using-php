@@ -1,9 +1,15 @@
 <div class="navbar">
-    <div class="search-bar">
-        <input id="query-input" type="text">
-        <input type="hidden" id="query" value='<?= $data['query']?>'>
-        <button onclick="getSearch()">Search</button>
+    <div class="content">
+        <a href="<?= BASEURL?>" class="logo"><img src="<?= BASEURL?>/public/img/tempe.jpg" alt=""></a>
+        <?php if (isset($data['dashboard'])): ?>
+            <div class="search-bar">
+                <input id="query-input" type="text">
+                <input type="hidden" id="query" value='<?= $data['query']?>'>
+                <button onclick="getSearch()">Search</button>
+            </div>
+        <?php endif; ?>
     </div>
+    
     <div class="menus">
         <?php if ($data['isAdmin']) : ?>
             <a href="<?= BASEURL?>/dorayaki/add">Tambah</a>

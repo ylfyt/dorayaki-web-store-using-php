@@ -105,6 +105,19 @@ class Dorayaki_model {
         return $result;  
     }
 
+    public function insert($data)
+    {
+        $query = "INSERT INTO $this->table VALUES
+        (NULL, :nama, :url, :deskripsi, :harga, :stok)";
+
+        $bind = $data;
+
+        $this->db->query($query, $bind);
+        $this->db->execute();
+
+        return $this->db->rowAffected();
+    }
+
     // public function test()
     // {
     //     $query = 'SELECT dorayaki.id as id, nama, harga, url, SUM(num) as total

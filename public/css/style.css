@@ -15,9 +15,21 @@
     background-color: gray;
 }
 
-.navbar .search-bar{
+.navbar .content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar{
     background-color: rgb(201, 201, 201);
     padding: 15px;
+    margin-left: 20px;
+}
+
+
+.logo img{
+    width: 70px;
 }
 
 .navbar .menus a{
@@ -103,4 +115,9 @@
     font-size: 15px;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+/* Dorayaki form */
+textarea {
+    resize: none;
 }
