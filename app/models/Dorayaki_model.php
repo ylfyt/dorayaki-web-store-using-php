@@ -23,10 +23,33 @@ class Dorayaki_model {
     	return $result;
     }
 
-    public function getNDorayaki($n, $offset=0)
+    public function getNDorayakiSorted($n, $offset=0, $desc=true)
     {
-        $query = "SELECT * FROM $this->table LIMIT $n OFFSET $offset";
-        $this->db->query($query);
+        if ($desc){
+            $query = "SELECT dorayaki.id as id, nama, harga, url, deskripsi, SUM(num) as total
+            FROM dorayaki
+            LEFT JOIN pembelian ON dorayaki.id = pembelian.dorayaki_id
+            GROUP BY dorayaki.id
+            ORDER BY total DESC
+            LIMIT :n
+            OFFSET :offset";
+        }
+        else{
+            $query = "SELECT dorayaki.id as id, nama, harga, url, deskripsi, SUM(num) as total
+            FROM dorayaki
+            LEFT JOIN pembelian ON dorayaki.id = pembelian.dorayaki_id
+            GROUP BY dorayaki.id
+            ORDER BY total ASC
+            LIMIT :n
+            OFFSET :offset";
+        }
+
+        $bind = [
+            'n' => $n,
+            'offset' => $offset
+        ];
+
+        $this->db->query($query, $bind);
         $result = $this->db->resultSet();
         return $result;        
     }
@@ -38,4 +61,19 @@ class Dorayaki_model {
         $result = $this->db->single();
         return $result;  
     }
+
+    // public function test()
+    // {
+    //     $query = 'SELECT dorayaki.id as id, nama, harga, url, SUM(num) as total
+    //     FROM dorayaki, pembelian 
+    //     WHERE pembelian.dorayaki_id = dorayaki.id
+    //     GROUP BY dorayaki.id
+    //     ORDER BY total DESC
+    //     LIMIT 10
+    //     OFFSET 0';
+    //     $this->db->query($query);
+    //     $result = $this->db->resultSet();
+    //     var_dump($result);
+    //     die;
+    // }
 }

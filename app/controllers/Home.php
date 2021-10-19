@@ -28,7 +28,7 @@ class Home extends Controller{
         $offset = $p * $this->nDorayakiInOnePage;
         $limit = $this->nDorayakiInOnePage;
 
-        $dorayaki = $this->model('Dorayaki_model')->getNDorayaki($limit, $offset);
+        $dorayaki = $this->model('Dorayaki_model')->getNDorayakiSorted($limit, $offset, true);
         $numOfDorayaki = $this->model('Dorayaki_model')->getNumOfDorayaki()["count(id)"];
 
         $first = ($p == 0);
