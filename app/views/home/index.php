@@ -1,5 +1,16 @@
 <div class="container">
     <h1>Dashboard</h1>
+    <?php if (count($data['dorayaki']) >= 0) : ?>
+        <div class="page-navigator">
+            <?php if (!$data['first']) : ?>
+                <a href="<?= BASEURL ?>/<?= $data['page']-1 ?>"><</a>
+            <?php endif; ?>
+            <p id="page-number"><?= $data['page']+1; ?></p>
+            <?php if (!$data['last']) : ?>
+                <a href="<?= BASEURL ?>/<?= $data['page']+1 ?>">></a>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
     <div class="dorayaki-container">
         <?php if (count($data['dorayaki']) > 0) : ?>
             <?php foreach($data['dorayaki'] as $dora) : ?>

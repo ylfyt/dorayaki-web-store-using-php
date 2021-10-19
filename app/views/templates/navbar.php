@@ -7,11 +7,11 @@
     </div>
     <div class="menus">
         <?php if ($data['isAdmin']) : ?>
-            <a href="#add">Tambah</a>
+            <a href="<?= BASEURL?>/dorayaki/add">Tambah</a>
         <?php else : ?>
-            <a href="#history">Daftar</a>
+            <a href="<?= BASEURL?>/user/hitory">Daftar</a>
         <?php endif; ?>
-        <a href="#logout">Logout</a>
-        <a href="#profile"><?= $data['username']?></a>
+        <a href="<?= BASEURL?>/logout">Logout</a>
+        <a href="<?= BASEURL?>/user/<?= $data['username']?>"><?= $data['username']?></a>
     </div>
 </div>

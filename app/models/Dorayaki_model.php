@@ -10,7 +10,7 @@ class Dorayaki_model {
     }
 
     public function getAllDorayaki(){
-    	$this->db->query('select * from dorayaki');
+    	$this->db->query('SELECT * FROM dorayaki');
     	$result = $this->db->resultSet();
     	return $result;
     }
@@ -21,5 +21,21 @@ class Dorayaki_model {
     	$this->db->query($query, $bind);
     	$result = $this->db->single();
     	return $result;
+    }
+
+    public function getNDorayaki($n, $offset=0)
+    {
+        $query = "SELECT * FROM $this->table LIMIT $n OFFSET $offset";
+        $this->db->query($query);
+        $result = $this->db->resultSet();
+        return $result;        
+    }
+
+    public function getNumOfDorayaki()
+    {
+        $query = "SELECT count(id) FROM $this->table";
+        $this->db->query($query);
+        $result = $this->db->single();
+        return $result;  
     }
 }
