@@ -4,23 +4,34 @@ class Home extends Controller{
 
     private $nDorayakiInOnePage = 10;
 
-    public function index($page = 0)
+    public function index($arg = null)
+    {
+        if (is_null($arg)){
+            $this->page();
+        }
+        else {
+            // TODO: Page not found harusnya
+            $this->page();
+        }
+    }
+
+    public function page($p=0)
     {
         try {
-            $page = (int)$page;
-            if ($page < 0) $page = 0; 
+            $p = (int)$p;
+            if ($p < 0) $p = 0; 
         }  
         catch(Exception $e) {
-            $page = 0;
+            $p = 0;
         }
 
-        $offset = $page * $this->nDorayakiInOnePage;
+        $offset = $p * $this->nDorayakiInOnePage;
         $limit = $this->nDorayakiInOnePage;
 
         $dorayaki = $this->model('Dorayaki_model')->getNDorayaki($limit, $offset);
         $numOfDorayaki = $this->model('Dorayaki_model')->getNumOfDorayaki()["count(id)"];
 
-        $first = ($page == 0);
+        $first = ($p == 0);
         $last = ($offset + count($dorayaki) >= (int)$numOfDorayaki);
 
         $data = [
@@ -28,7 +39,7 @@ class Home extends Controller{
             'isAdmin' => false,
             'username' => 'Budy',
             'dorayaki' => $dorayaki,
-            'page' => $page,
+            'page' => $p,
             'first' => $first,
             'last' => $last
         ];

@@ -7,13 +7,15 @@ class App {
 
     public function __construct(){
         $url = $this->parseURL();
+        $idx = 0;
 
         // Controller
-        if (isset($url[0])){
-            $url[0] = ucfirst($url[0]);
-            if (file_exists('../app/controllers/' . $url[0] . '.php')){
-                $this->controller = $url[0];
-                unset($url[0]);
+        if (isset($url[$idx])){
+            $cont = ucfirst($url[$idx]);
+            if (file_exists('../app/controllers/' . $cont . '.php')){
+                $this->controller = $cont;
+                unset($url[$idx]);
+                $idx++;
             }
         }
         
@@ -21,10 +23,11 @@ class App {
         $this->controller = new $this->controller;
 
         // Method
-        if (isset($url[1])){
-            if ( method_exists($this->controller, $url[1]) ){
-                $this->method = $url[1];
-                unset($url[1]);
+        if (isset($url[$idx])){
+            if ( method_exists($this->controller, $url[$idx]) ){
+                $this->method = $url[$idx];
+                unset($url[$idx]);
+                $idx++;
             }
         }
 

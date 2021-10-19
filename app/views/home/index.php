@@ -3,11 +3,11 @@
     <?php if (count($data['dorayaki']) >= 0) : ?>
         <div class="page-navigator">
             <?php if (!$data['first']) : ?>
-                <a href="<?= BASEURL ?>/<?= $data['page']-1 ?>"><</a>
+                <a href="<?= BASEURL ?>/page/<?= $data['page']-1 ?>"><</a>
             <?php endif; ?>
             <p id="page-number"><?= $data['page']+1; ?></p>
             <?php if (!$data['last']) : ?>
-                <a href="<?= BASEURL ?>/<?= $data['page']+1 ?>">></a>
+                <a href="<?= BASEURL ?>/page/<?= $data['page']+1 ?>">></a>
             <?php endif; ?>
         </div>
     <?php endif; ?>
