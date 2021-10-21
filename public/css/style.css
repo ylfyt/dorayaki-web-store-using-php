@@ -6,13 +6,17 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body {
+    background-color: #DCFFFB;
+}
+
 /* NAVBAR */
 .navbar {
     display: flex;
     justify-content: space-between;
     padding: 20px;
     align-items: center;
-    background-color: gray;
+    background-color: #C0E7E2;
 }
 
 .navbar .content{
@@ -30,12 +34,24 @@
 
 .logo img{
     width: 70px;
+    border-radius: 50%;
 }
 
 .navbar .menus a{
-    margin-left: 10px;
-    background-color: rgb(201, 201, 201);
-    padding: 15px;
+    margin-left: 20px;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.menus #user{
+    padding: 3px 10px 3px 10px;
+    background-color: #FFDCF4;
+    border-radius: 10px;
+}
+
+.menus a:hover{
+    color: #C1BBDD;
 }
 /* END NAVBAR */
 
@@ -83,13 +99,16 @@
 /* Card */
 .card{
     padding: 20px;
-    border: 2px solid black;
+    border: 2px solid #C1BBDD;
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 150px;
     height: 250px;
     margin-bottom: 20px;
+    background-color: #FFDCF4;
+    border-radius: 15px;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.5);
 }
 
 .card img{

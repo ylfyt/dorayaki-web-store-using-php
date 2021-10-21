@@ -17,6 +17,6 @@
             <a href="<?= BASEURL?>/user/hitory">Daftar</a>
         <?php endif; ?>
         <a href="<?= BASEURL?>/user/signout">Logout</a>
-        <a href="<?= BASEURL?>/user/<?= $data['username']?>"><?= $data['username']?></a>
+        <a id = "user" href="<?= BASEURL?>/user/<?= $data['username']?>"><?= $data['username']?></a>
     </div>
 </div>
