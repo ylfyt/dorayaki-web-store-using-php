@@ -9,8 +9,34 @@ class Dorayaki extends Controller {
             exit;
         }
         
+        $data = [
+            'title' => 'Detail',
+            'is-admin' => $_SESSION['is-admin'],
+            'username' => $_SESSION['username']
+        ];
+
         $dora = $this->model('Dorayaki_model')->getDorayakiByID($id);
+        $sold = $this->model('Dorayaki_model')->getSoldDorayaki($id);
+
+        if(!$dora){
+            header('Location: ' . BASEURL);
+            exit;
+        }
+
+        if (!$sold){
+            $dora['sold'] = 0;
+        }
+        else{
+            $dora['sold'] = $sold['total'];
+        }
+
+        $data['dorayaki'] = $dora;
+
         
+        $this->view('templates/header', $data);
+        $this->view('templates/navbar', $data);
+        $this->view('dorayaki/index', $data);
+        $this->view('templates/header', $data);
     }
 
     public function add()
@@ -82,5 +108,30 @@ class Dorayaki extends Controller {
         $url = BASEURL . '/public/img/' . $newFileName;
 
         return $url;
+    }
+
+    public function buy($id = null)
+    {
+        if (is_null($id)){
+            header('Location: ' . BASEURL);
+            exit;
+        }
+
+        $data = [
+            'title' => 'Pembelian'
+        ];
+
+        $dora = $this->model('Dorayaki_model')->getDorayakiByID($id);
+        if(!$dora){
+            header('Location: ' . BASEURL);
+            exit;
+        }
+
+        $data['dorayaki'] = $dora;
+
+
+        $this->view('templates/header', $data);
+        $this->view('dorayaki/pembelian', $data);
+        $this->view('templates/header', $data);
     }
 }

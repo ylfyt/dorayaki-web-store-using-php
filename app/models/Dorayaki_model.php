@@ -120,7 +120,7 @@ class Dorayaki_model {
 
     public function getSoldDorayaki($id)
     {
-        $query = "SELECT sum(num) FROM pembelian 
+        $query = "SELECT sum(num) as total FROM pembelian 
         WHERE dorayaki_id = $id GROUP BY dorayaki_id";
 
         $this->db->query($query);
