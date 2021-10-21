@@ -16,3 +16,7 @@
         </form>
     </div>
 </div>
+
+<?php if (isset($_SESSION['flash'])) : ?>
+<?php Flasher::flash();?>
+<?php endif; ?>

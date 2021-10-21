@@ -50,7 +50,7 @@ class Dorayaki extends Controller {
 
         if (isset($_POST['add'])){
             $url = $this->uploadphoto($_FILES['gambar']);
-            if ($url != 0){
+            if (!is_int($url)){
                 $nama = htmlspecialchars($_POST['nama']);
                 $deskripsi = htmlspecialchars($_POST['deskripsi']);
                 $harga = htmlspecialchars($_POST['harga']);
@@ -65,6 +65,15 @@ class Dorayaki extends Controller {
                 ];
 
                 $result = $this->model('Dorayaki_model')->insert($dora);
+                if ($result == 0){
+                    Flasher::setFlash('Dorayaki gagal ditambahkan!!');
+                } 
+                else{
+                    Flasher::setFlash('Dorayaki berhasil ditambahkan');
+                }
+            }
+            else{
+                Flasher::setFlash('Gambar Error!!');
             }
         }
 
@@ -106,7 +115,7 @@ class Dorayaki extends Controller {
         move_uploaded_file($tempName, '../public/img/'.$newFileName);
         
         $url = BASEURL . '/public/img/' . $newFileName;
-
+        
         return $url;
     }
 
