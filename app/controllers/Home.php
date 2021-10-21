@@ -6,10 +6,15 @@ class Home extends Controller{
 
     public function index()
     {
+        if(!isset($_SESSION['username'])){
+            header('Location:'. BASEURL.'/user/signin');
+            exit;
+        }
+
         $data = [
             'title' => 'Dashboard',
-            'isAdmin' => true,
-            'username' => 'Budy',
+            'is-admin' => $_SESSION['is-admin'],
+            'username' => $_SESSION['username'],
             'dashboard' => true
         ];
 

@@ -11,8 +11,8 @@ class Dorayaki extends Controller {
     {
         $data = [
             'title' => 'Tambah Dorayaki',
-            'username' => 'Budy',
-            'isAdmin' => true
+            'username' => $_SESSION['username'],
+            'is-admin' => $_SESSION['is-admin']
         ];
 
 
