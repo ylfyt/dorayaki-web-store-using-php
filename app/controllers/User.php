@@ -127,4 +127,41 @@ class User extends Controller{
         exit;
     }
 
+    public function searchusername($usernameInput = null){
+        if (is_null($usernameInput))
+        {
+            $data['error'] = true;
+            echo json_encode($data);
+        }
+        else{
+            if(!($this->model('User_model')->getUserByUsername($usernameInput)))
+            {
+                $data['error'] = false;
+            }
+            else
+            {
+                $data['error'] = true;
+            }
+
+            echo json_encode($data);
+        }
+        
+    }
+
+    public function isvalidemail($emailInput = null){
+        if (is_null($emailInput)){
+            $data['error'] = true;
+            echo json_encode($data);
+        }
+        else{
+            if(preg_match('/\A[a-z0-9]+([-._][a-z0-9]+)*@([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,4}\z/', $emailInput) && preg_match('/^(?=.{1,64}@.{4,64}$)(?=.{6,100}$).*/', $emailInput)){
+                $data['error'] = false;
+            } 
+            else{
+                $data['error'] = true;
+            }
+    
+            echo json_encode($data);
+        }
+    }
 }

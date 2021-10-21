@@ -6,8 +6,8 @@
             <div class="auth-container">
                 <div class="form">
                     <form action="<?= BASEURL ?>/user/signup" method="post">
-                        <input class="input-field" type="text" placeholder="Username" name="username">
-                        <input class="input-field" type="email" placeholder="Email" name="email">
+                        <input id="username" class="input-field" type="text" placeholder="Username" name="username" onkeyup="validateUsername()">
+                        <input id="email" class="input-field" type="email" placeholder="Email" name="email" onkeyup="validateEmail()">
                         <input class="input-field" type="password" placeholder="Password" name="password">
                         <input class="input-field" type="password" placeholder="Confirm Password" name="confirm-password">
                         <input type="submit" name="signup" value="Sign Up">
