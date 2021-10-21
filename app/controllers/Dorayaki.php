@@ -4,6 +4,12 @@ class Dorayaki extends Controller {
 
     public function index($id = null)
     {
+        if (is_null($id)) {
+            header('Location: ' . BASEURL);
+            exit;
+        }
+        
+        $dora = $this->model('Dorayaki_model')->getDorayakiByID($id);
         
     }
 

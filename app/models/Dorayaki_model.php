@@ -118,6 +118,16 @@ class Dorayaki_model {
         return $this->db->rowAffected();
     }
 
+    public function getSoldDorayaki($id)
+    {
+        $query = "SELECT sum(num) FROM pembelian 
+        WHERE dorayaki_id = $id GROUP BY dorayaki_id";
+
+        $this->db->query($query);
+        $result = $this->db->single();
+        return $result;
+    }
+
     // public function test()
     // {
     //     $query = 'SELECT dorayaki.id as id, nama, harga, url, SUM(num) as total
