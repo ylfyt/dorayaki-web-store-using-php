@@ -134,8 +134,34 @@ class Dorayaki extends Controller {
         if (isset($_POST['edit']) || isset($_POST['buy'])){
             $id = $_POST['iddora'];
             $jml = $_POST['jmlstok'];
-            $result = $this->model('Dorayaki_model')->updateStok($id, $jml);
-            die;
+            $jml = (int)$jml;
+
+            if (isset($_POST['edit'])){
+                $result = $this->model('Dorayaki_model')->changeStokDorayaki($id, $jml);
+                if ($result == 1){
+                    Flasher::setFlash('Stok Dorayaki berhasil diubah');
+                }
+                else{
+                    Flasher::setFlash('Stok Dorayaki gagal diubah');
+                }
+            }
+            else if (isset($_POST['buy'])){
+                $result = $this->model('Dorayaki_model')->decreaseDorayaki($id, $jml);
+                if ($result == 1){
+                    $userId = $_SESSION['user-id'];
+                    $result = $this->model('Pembelian_model')->insert($id, $userId, $jml);
+                    if ($result == 1){
+                        Flasher::setFlash('Pembelian dorayaki berhasil');
+                    }
+                    else {
+                        Flasher::setFlash('Pembelian dorayaki gagal');
+                    }
+                }
+                else{
+                    Flasher::setFlash('Pembelian dorayaki gagal');
+                }
+            }
+            
         }
 
 

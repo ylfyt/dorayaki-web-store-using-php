@@ -141,26 +141,36 @@ class Dorayaki_model {
         return $result;
     }
 
-    public function decreaseDorayaki($nama, $jml)
+    public function decreaseDorayaki($id, $jml)
     {
         $query = "UPDATE dorayaki
-        SET stok = stok - $jml
-        WHERE nama = $nama";
+        SET stok = stok - :jml
+        WHERE id =:id";
 
-        $this->db->query($query);
-        $result = $this->db->single();
-        return $result;
+        $bind = [
+            'jml' => $jml,
+            'id' => $id
+        ];
+
+        $this->db->query($query, $bind);
+        $this->db->execute();
+        return $this->db->rowAffected();
     }
 
-    public function changeStokDorayaki($nama, $jml)
+    public function changeStokDorayaki($id, $jml)
     {
         $query = "UPDATE dorayaki
-        SET stok = $jml
-        WHERE nama = $nama";
+        SET stok = :jml
+        WHERE id = :id";
 
-        $this->db->query($query);
-        $result = $this->db->single();
-        return $result;
+        $bind = [
+            'id' => $id,
+            'jml' => $jml
+        ];
+
+        $this->db->query($query, $bind);
+        $this->db->execute();
+        return $this->db->rowAffected();
     }
 
     // public function test()
