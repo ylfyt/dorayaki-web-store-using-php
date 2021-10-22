@@ -1,3 +1,21 @@
+# Wumbo Store
+
+## Cara Install
+- Install web server php (ex. XAMPP)
+- Set configuration php pada file 'xampp/php/php.ini'
+    - Tambahkan 'extension=pdo_sqlite'
+- Download dan extract repository ini, dan ubah nama foldernya menjadi 'if-3110-2021-01-23'
+- Pindahkan folder 'if-3110-2021-01-23' ke folder 'xampp/htdocs'
+- Buka browser dan arahkan url ke 'http://localhost/if-3110-2021-01-23'
+
+
+## Author
+- 13519051 - Yudi Alfayat
+- 13519066 - Almeiza Arvin Muzaki
+- 13519159 - Benidictus Galih Mahar Putra
+
+
+
 ## Panduan Pengerjaan
 Berikut adalah hal yang harus diperhatikan untuk pengumpulan tugas ini:
 1. Buatlah grup pada Gitlab dengan format "IF3110-2021-KXX-01-YY", dengan XX adalah nomor kelas dan YY adalah nomor kelompok.
