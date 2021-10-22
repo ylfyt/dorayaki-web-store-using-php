@@ -1,6 +1,15 @@
 # Wumbo Store
 
+Merupakan website untuk melakukan pembelian untuk Dorayaki dan ada dua admin dan user untuk melakukan login 
 
+## Daftar Requirement
+1. XAMPP
+2. SQL Lite
+
+## Cara Menjalankan Server
+1. Run XAMPP
+2. Run Apache
+3. Buka browser dan buka url http://localhost/if-3110-2021-01-23/
 
 ## Cara Install dan Requirement
 - Install web server php (ex. XAMPP)
@@ -9,6 +18,21 @@
 - Download dan extract repository ini, dan ubah nama foldernya menjadi 'if-3110-2021-01-23'
 - Pindahkan folder 'if-3110-2021-01-23' ke folder 'xampp/htdocs'
 - Buka browser dan arahkan url ke 'http://localhost/if-3110-2021-01-23'
+
+## Pembagian Tugas
+Arvin
+- Halaman Login
+- Halaman Register
+
+Yudi
+- Halaman Dashboard
+- Halaman Hasil Pencarian
+- Halaman Penambahan Dorayaki Baru
+
+Dito
+- Halaman Detail Varian Dorayaki
+- Halaman Pengubahan Stok / Pembelian Dorayaki
+- Halaman Pengubahan Detail Dorayaki
 
 
 ## Author
