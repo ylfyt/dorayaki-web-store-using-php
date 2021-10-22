@@ -164,7 +164,6 @@ class Dorayaki extends Controller {
             
         }
 
-
         $data = [
             'title' => 'Pembelian',
             'is-admin' => $_SESSION['is-admin'],
@@ -194,6 +193,85 @@ class Dorayaki extends Controller {
         $this->view('templates/footer', $data);
     }
 
+    public function buyfromajax()
+    {
+        if ($_SERVER['REQUEST_METHOD'] != 'POST'){
+            $data['error'] = true;
+            $data['error-msg'] = 'request-method error';
+            echo json_encode($data);
+        }
+        else
+        {
+            if (isset($_POST['action']))
+            {
+                if (!isset($_POST['iddora']) && !isset($_POST['jmlstok']) && !isset($_POST['userid'])){
+                    $data['error'] = true;
+                    $data['error-msg'] = 'params error';
+                    echo json_encode($data);
+                }
+                else{
+
+                    try {
+                        $id = (int)$_POST['iddora'];
+                        $jml = (int)$_POST['jmlstok'];
+                        $userId = (int)$_POST['userid'];
+
+                        if ($_POST['action'] == 'edit'){
+                            $result = $this->model('Dorayaki_model')->changeStokDorayaki($id, $jml);
+
+                            if ($result != 1){
+                                $data['error'] = true;
+                                $data['error-msg'] = 'perubahan gagal';
+                                echo json_encode($data);
+                            }
+                            else{
+                                $data['error'] = false;
+                                echo json_encode($data);
+                            }
+                        }
+                        else if ($_POST['action'] == 'buy'){
+                            $result = $this->model('Dorayaki_model')->decreaseDorayaki($id, $jml);
+                            if ($result == 1){
+                                $result = $this->model('Pembelian_model')->insert($id, $userId, $jml);
+                                if ($result == 1){
+                                    $data['error'] = false;
+                                    echo json_encode($data);
+                                }
+                                else {
+                                    $data['error'] = true;
+                                    $data['error-msg'] = 'pembelian gagal';
+                                    echo json_encode($data);
+                                }
+                            }
+                            else{
+                                $data['error'] = true;
+                                $data['error-msg'] = 'pembelian gagal';
+                                echo json_encode($data);
+                            }
+                        }
+                        else{
+                            $data['error'] = true;
+                            $data['error-msg'] = 'action error';
+                            echo json_encode($data);
+                        }
+
+                        
+                    } catch (Exception $e) {
+                        $data['error'] = true;
+                        $data['error-msg'] = $e->getMessage();
+                        echo json_encode($data);
+                    }                    
+                }
+                
+            }
+            else{
+                $data['error'] = true;
+                $data['error-msg'] = 'action error';
+                echo json_encode($data);
+            }
+        }
+    }
+
     public function delete()
     {
         if (!isset($_SESSION['username'])){
@@ -206,8 +284,6 @@ class Dorayaki extends Controller {
         }
         else{
             $id = $_POST['id'];
-
-            $result = $this->model('Pembelian_model')->deleteAllDorayakiRecord($id);
 
             $result = $this->model('Dorayaki_model')->deleteDorayaki($id);
             if ($result == 1){

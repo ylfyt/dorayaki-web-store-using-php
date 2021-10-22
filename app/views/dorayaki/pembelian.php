@@ -5,14 +5,14 @@
         </div>
         <div>
             <h1><?=$data['dorayaki']['nama']?></h1>
-            <p>Tersedia (<?=$data['dorayaki']['stok']?>)</p>
+            <p id="stoktersedia">Tersedia <?=$data['dorayaki']['stok']?></p>
             <h2>Rp.<?=$data['dorayaki']['harga']?></h2>
         </div>
         <p>Jumlah Dorayaki:</p>
-        <form action="<?= BASEURL ?>/dorayaki/buy/<?=$data['dorayaki']['id']?>" method="post">
         <div>
             <input type="hidden" value="<?=$data['dorayaki']['harga']?>" id="hargadora">
             <input type="hidden" value="<?=$data['dorayaki']['id']?>" id="iddora" name="iddora">
+            <input type="hidden" value="<?=$_SESSION['user-id']?>" id="userid" name="userid">
             <?php if ($data['is-admin'] == 1): ?>
                 <div onclick="incAmount()">+</div>
                 <input id="jmlstok" type="number" min=0 name="jmlstok">
@@ -29,11 +29,10 @@
 
 
         <?php if ($data['is-admin']): ?>
-            <button type="submit" name="edit">Ubah Stock</button>
+            <button type="submit" name="edit" onclick="editStok()">Ubah Stock</button>
         <?php else: ?>
-            <button type="submit" name="buy">Beli</button>
+            <button type="submit" name="buy" onclick="buyDora()">Beli</button>
         <?php endif; ?>
-        </form>
         
         <a href="<?php echo(BASEURL . '/dorayaki/' . $data['dorayaki']['id'])?>">Batal</a>
     
