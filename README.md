@@ -1,6 +1,8 @@
 # Wumbo Store
 
-## Cara Install
+
+
+## Cara Install dan Requirement
 - Install web server php (ex. XAMPP)
 - Set configuration php pada file 'xampp/php/php.ini'
     - Tambahkan 'extension=pdo_sqlite'
