@@ -37,4 +37,19 @@ class Pembelian_model {
 
         return $this->db->rowAffected();
     }
+
+    public function getAllLogByUserId($userId)
+    {
+        $query = "SELECT nama, num * harga as total, num, timestamp
+        FROM pembelian, dorayaki
+        WHERE pembelian.dorayaki_id = dorayaki.id AND user_id=:userId";
+
+        $bind = [
+            'userId' => $userId
+        ];
+
+        $this->db->query($query, $bind);
+        
+        return $this->db->resultSet();
+    }
 }

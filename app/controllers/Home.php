@@ -67,5 +67,33 @@ class Home extends Controller{
         echo json_encode($result);
     }
 
+    public function history(){
+        if (!isset($_SESSION['user-id'])){
+            header('Location: ' . BASEURL . '/user/signin');
+            exit;
+        }
+
+        $data = [
+            'title' => 'Riwayat',
+            'is-admin' => $_SESSION['is-admin'],
+            'username' => $_SESSION['username']
+        ];
+
+        if (!$_SESSION['is-admin']){
+
+            $userId = $_SESSION['user-id'];
+
+            $logs = $this->model('Pembelian_model')->getAllLogByUserId($userId);
+
+            $data['history'] = $logs;
+
+            $this->view('templates/header', $data);
+            $this->view('templates/navbar', $data);
+            $this->view('home/history_buy', $data);
+            $this->view('templates/footer', $data);
+        }
+
+    }
+
 
 }

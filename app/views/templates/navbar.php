@@ -14,7 +14,7 @@
         <?php if ($data['is-admin']) : ?>
             <a href="<?= BASEURL?>/dorayaki/add">Tambah</a>
         <?php else : ?>
-            <a href="<?= BASEURL?>/user/hitory">Daftar</a>
+            <a href="<?= BASEURL?>/history">Riwayat</a>
         <?php endif; ?>
         <a href="<?= BASEURL?>/user/signout">Logout</a>
         <a id = "user" href="<?= BASEURL?>/user/<?= $data['username']?>"><?= $data['username']?></a>
