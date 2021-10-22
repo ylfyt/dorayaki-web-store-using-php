@@ -18,7 +18,7 @@ function editStok(){
             if(this.readyState == 4 && this.status == 200) {
                 var json = JSON.parse(this.responseText);
                 if (json.error == false){
-                    updatePagePembelian(jmlstok);
+                    updatePagePembelian(jmlstok, action);
                     setNotification(true, 'Pengubahan stok berhasil');
                 }
                 else{
@@ -34,7 +34,38 @@ function editStok(){
 }
 
 function buyDora(){
-    alert('buy')
+    var jmlstok = document.getElementById('jmlstok').value;
+    var iddora = document.getElementById('iddora').value;
+    var userid = document.getElementById('userid').value;
+    var action = 'buy';
+
+    if (jmlstok == '' || iddora == '' || userid == ''){
+        setNotification(false, 'Pembelian gagal');
+    }
+    else{
+        var xhr = new XMLHttpRequest();
+        var url = BASEURL + '/dorayaki/buyfromajax';
+        xhr.open('POST', url, true);
+        
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function () {
+            if(this.readyState == 4 && this.status == 200) {
+                var json = JSON.parse(this.responseText);
+                if (json.error == false){
+                    updatePagePembelian(jmlstok, action);
+                    setNotification(true, 'Pembelian dorayaki berhasil');
+                }
+                else{
+                    setNotification(true, 'Pembelian dorayaki gagal');
+                }
+            }
+        };
+    
+        
+        var params = 'action=' + action + '&' + 'jmlstok=' + jmlstok + '&' + 'iddora=' + iddora + '&' + 'userid=' + userid;  
+        xhr.send(params);
+    }
 }
 
 function setNotification(success, msg){
@@ -54,9 +85,16 @@ function setNotification(success, msg){
     }
 }
 
-function updatePagePembelian(stok){
+function updatePagePembelian(stok, action){
     if (stok != null){
-        document.getElementById('stoktersedia').innerHTML = 'Tersedia ' + stok;
+        if (action == 'edit'){
+            document.getElementById('stoktersedia').innerHTML = stok;
+        }
+        else if (action == 'buy'){
+            var jml = document.getElementById('stoktersedia').innerText;
+            jml = jml - stok;
+            document.getElementById('stoktersedia').innerHTML = jml;
+        }
     }
 }
 

@@ -5,7 +5,10 @@
         </div>
         <div>
             <h1><?=$data['dorayaki']['nama']?></h1>
-            <p id="stoktersedia">Tersedia <?=$data['dorayaki']['stok']?></p>
+            <div id='stokdora'>
+                <p>Tersedia </p>
+                <p id="stoktersedia"><?=$data['dorayaki']['stok']?></p>
+            </div>
             <h2>Rp.<?=$data['dorayaki']['harga']?></h2>
         </div>
         <p>Jumlah Dorayaki:</p>
