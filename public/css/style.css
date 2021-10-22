@@ -299,5 +299,34 @@ textarea {
     border-radius: 15px;
 }
 
+/* NOTIFICATION */
+.notification {
+    position: fixed;
+    top: 110px;
+    right: 20px;
+    background-color: rgb(139, 248, 139);
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    overflow: visible;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.5);
+}
 
+#close-button {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+}
 
+#close-button:hover{
+    cursor: pointer;
+}
+
+.green{
+    background-color: rgb(139, 248, 139);
+}
+
+.red {
+    background-color: rgb(247, 131, 131);
+}
+
+/* END NOTIFICATION */

@@ -30,3 +30,9 @@
         <?php endif; ?>
     </div>
 </div>
+
+
+<div class="notification red" id="notification">
+    <div id="close-button" onclick="closeNotification()">x</div>
+    <p id="message">Dorayaki gagal dihapus</p>
+</div>

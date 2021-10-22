@@ -170,3 +170,8 @@ function calculatePrice(){
 
     document.getElementById('totalharga').innerHTML= 'Total Harga: ' + harga*jumlah;
 }    
+
+function closeNotification(){
+    var notif = document.getElementById('notification');
+    notif.remove();
+}

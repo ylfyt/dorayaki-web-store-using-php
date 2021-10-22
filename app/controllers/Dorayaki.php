@@ -66,14 +66,14 @@ class Dorayaki extends Controller {
 
                 $result = $this->model('Dorayaki_model')->insert($dora);
                 if ($result == 0){
-                    Flasher::setFlash('Dorayaki gagal ditambahkan!!');
+                    Flasher::setFlash(false, 'Dorayaki gagal ditambahkan!!');
                 } 
                 else{
-                    Flasher::setFlash('Dorayaki berhasil ditambahkan');
+                    Flasher::setFlash(true, 'Dorayaki berhasil ditambahkan');
                 }
             }
             else{
-                Flasher::setFlash('Gambar Error!!');
+                Flasher::setFlash(false, 'Gambar Error!!');
             }
         }
 
@@ -139,10 +139,10 @@ class Dorayaki extends Controller {
             if (isset($_POST['edit'])){
                 $result = $this->model('Dorayaki_model')->changeStokDorayaki($id, $jml);
                 if ($result == 1){
-                    Flasher::setFlash('Stok Dorayaki berhasil diubah');
+                    Flasher::setFlash(true, 'Stok Dorayaki berhasil diubah');
                 }
                 else{
-                    Flasher::setFlash('Stok Dorayaki gagal diubah');
+                    Flasher::setFlash(false, 'Stok Dorayaki gagal diubah');
                 }
             }
             else if (isset($_POST['buy'])){
@@ -151,14 +151,14 @@ class Dorayaki extends Controller {
                     $userId = $_SESSION['user-id'];
                     $result = $this->model('Pembelian_model')->insert($id, $userId, $jml);
                     if ($result == 1){
-                        Flasher::setFlash('Pembelian dorayaki berhasil');
+                        Flasher::setFlash(true, 'Pembelian dorayaki berhasil');
                     }
                     else {
-                        Flasher::setFlash('Pembelian dorayaki gagal');
+                        Flasher::setFlash(false, 'Pembelian dorayaki gagal');
                     }
                 }
                 else{
-                    Flasher::setFlash('Pembelian dorayaki gagal');
+                    Flasher::setFlash(false, 'Pembelian dorayaki gagal');
                 }
             }
             
@@ -211,12 +211,12 @@ class Dorayaki extends Controller {
 
             $result = $this->model('Dorayaki_model')->deleteDorayaki($id);
             if ($result == 1){
-                Flasher::setFlash('Dorayaki berhasil dihapus');
+                Flasher::setFlash(true, 'Dorayaki berhasil dihapus');
                 header('Location: ' . BASEURL);
                 exit;
             }
             else{
-                Flasher::setFlash('Dorayaki gagal dihapus');
+                Flasher::setFlash(false, 'Dorayaki gagal dihapus');
             }
 
             header('Location: ' . BASEURL . '/dorayaki/' . $id);
