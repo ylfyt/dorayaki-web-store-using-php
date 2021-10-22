@@ -346,6 +346,7 @@ textarea {
 
 .btn:hover{
     background-color: #DABFDE;
+    cursor: pointer;
 }
 
 .desc-card {
@@ -390,14 +391,58 @@ textarea {
     background-color: #DCFFFB;
 }
 
-.desc-content .delete{
+.delete{
     color: white;
     background-color: #A42821;
 }
 
-.desc-content .delete:hover{
+.delete:hover{
     color: white;
     background-color: #742925;
 }
 
 /* pembelian page style css */
+.buy-card{
+    margin: 20px;
+    padding: 30px;
+    height: 500px;
+    width: 350px;
+    background-color: #C1E7E3;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+.buy-card img{
+    width: 150px;
+    margin: auto;
+}
+
+#stokdora{
+    display: flex;
+}
+
+.buy-content{
+    padding: 10px;
+    background-color: #DCFFFB;
+    border-radius: 10px;
+}
+
+.btn-amount {
+    display: flex;
+}
+
+.btn-amount .plus{
+    background-color: #65A765;
+    color: white;
+}
+
+.btn-amount .plus:hover{
+    background-color: #284228;
+    color: white;
+}
+
+.btn-amount input{
+    width: 100%;
+}
