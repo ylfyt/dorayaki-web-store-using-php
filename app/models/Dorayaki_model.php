@@ -128,6 +128,41 @@ class Dorayaki_model {
         return $result;
     }
 
+    public function deleteDorayaki($nama, $id)
+    {
+        $query = "DELETE FROM dorayaki 
+        WHERE nama = $nama";
+
+        // $query = "DELETE FROM perubahan 
+        // WHERE Dorayaki_id = $id";
+
+        $this->db->query($query);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function decreaseDorayaki($nama, $jml)
+    {
+        $query = "UPDATE dorayaki
+        SET stok = stok - $jml
+        WHERE nama = $nama";
+
+        $this->db->query($query);
+        $result = $this->db->single();
+        return $result;
+    }
+
+    public function changeStokDorayaki($nama, $jml)
+    {
+        $query = "UPDATE dorayaki
+        SET stok = $jml
+        WHERE nama = $nama";
+
+        $this->db->query($query);
+        $result = $this->db->single();
+        return $result;
+    }
+
     // public function test()
     // {
     //     $query = 'SELECT dorayaki.id as id, nama, harga, url, SUM(num) as total

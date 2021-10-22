@@ -127,19 +127,30 @@ class Dorayaki extends Controller {
         }
 
         $data = [
-            'title' => 'Pembelian'
+            'title' => 'Pembelian',
+            'is-admin' => $_SESSION['is-admin'],
+            'username' => $_SESSION['username']
         ];
 
         $dora = $this->model('Dorayaki_model')->getDorayakiByID($id);
+        $sold = $this->model('Dorayaki_model')->getSoldDorayaki($id);
+
         if(!$dora){
             header('Location: ' . BASEURL);
             exit;
         }
 
+        if (!$sold){
+            $dora['sold'] = 0;
+        }
+        else{
+            $dora['sold'] = $sold['total'];
+        }
+
         $data['dorayaki'] = $dora;
 
-
         $this->view('templates/header', $data);
+        $this->view('templates/navbar', $data);
         $this->view('dorayaki/pembelian', $data);
         $this->view('templates/header', $data);
     }

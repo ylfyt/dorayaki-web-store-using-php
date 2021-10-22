@@ -152,4 +152,21 @@ function updateDashboard(data){
     }
 }
 
-    
+function incAmount() {
+    document.getElementById('jmlstok').stepUp();
+}
+
+
+function decAmount() {
+    document.getElementById('jmlstok').stepDown();
+}
+
+function calculatePrice(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        var total  = document.getElementById('stockInput');
+    }
+
+    xhttp.open();
+    xhttp.send();
+}    
