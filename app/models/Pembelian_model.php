@@ -40,9 +40,10 @@ class Pembelian_model {
 
     public function getAllLogByUserId($userId)
     {
-        $query = "SELECT nama, num * harga as total, num, timestamp
+        $query = "SELECT nama, num * harga as total, num, dorayaki_id as id, timestamp
         FROM pembelian, dorayaki
-        WHERE pembelian.dorayaki_id = dorayaki.id AND user_id=:userId";
+        WHERE pembelian.dorayaki_id = dorayaki.id AND user_id=:userId
+        ORDER BY timestamp ASC";
 
         $bind = [
             'userId' => $userId

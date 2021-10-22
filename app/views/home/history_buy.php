@@ -13,7 +13,7 @@
 
             <?php foreach($data['history'] as $log): ?>
                 <tr>
-                    <td><?= $log['nama']?></td>
+                    <td><a href="<?= BASEURL?>/dorayaki/<?= $log['id']?>"><?= $log['nama']?></a></td>
                     <td><?= $log['num']?></td>
                     <td><?= $log['total']?></td>
                     <td><?= $log['timestamp']?></td>
