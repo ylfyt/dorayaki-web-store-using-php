@@ -1,15 +1,15 @@
 
 
     <main>
-        <div class="container">
-            <h2>Sign Up</h2>
+        <div class="container content">
             <div class="auth-container">
-                <div class="form">
+                <h2>Sign Up</h2>
+                <div class="form content">
                     <form action="<?= BASEURL ?>/user/signup" method="post">
-                        <input id="username" class="input-field" type="text" placeholder="Username" name="username" onkeyup="validateUsername()">
-                        <input id="email" class="input-field" type="email" placeholder="Email" name="email" onkeyup="validateEmail()">
-                        <input class="input-field" type="password" placeholder="Password" name="password">
-                        <input class="input-field" type="password" placeholder="Confirm Password" name="confirm-password">
+                        <input id="username" class="input-field input-text" type="text" placeholder="Username" name="username" onkeyup="validateUsername()">
+                        <input id="email" class="input-field input-text" type="email" placeholder="Email" name="email" onkeyup="validateEmail()">
+                        <input class="input-field input-text" type="password" placeholder="Password" name="password">
+                        <input class="input-field input-text" type="password" placeholder="Confirm Password" name="confirm-password">
                         <input type="submit" name="signup" value="Sign Up">
                     </form>
                     <?php if (isset($data['error'])) : ?>

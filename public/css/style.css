@@ -14,6 +14,45 @@ h1{
     font-weight: 700;
 }
 
+/*USER SIGNUP*/
+.auth-container{
+    /* background-color: greenyellow; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-container h1 {
+    margin-bottom: 25px;
+}
+
+.auth-container .content{
+    /* background-color: khaki; */
+    width: 450px;
+}
+
+.auth-container .content form {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* background-color: hotpink; */
+}
+.auth-container .content form input {
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 15px;
+}
+
+.auth-container .content form input[type='submit'] {
+    margin-top: 20px;
+    width: 100px;
+    height: 35px;
+    background-color: #C1BBDD;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+
 /* NAVBAR */
 .navbar {
     display: flex;

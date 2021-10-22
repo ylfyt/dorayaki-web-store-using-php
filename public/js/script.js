@@ -154,19 +154,19 @@ function updateDashboard(data){
 
 function incAmount() {
     document.getElementById('jmlstok').stepUp();
+    calculatePrice();
 }
 
 
 function decAmount() {
     document.getElementById('jmlstok').stepDown();
+    calculatePrice();
 }
 
 function calculatePrice(){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        var total  = document.getElementById('stockInput');
-    }
+    var harga = document.getElementById('hargadora').value;
+    var jumlah = document.getElementById('jmlstok').value;
+    console.log(document.getElementById('totalharga'))
 
-    xhttp.open();
-    xhttp.send();
+    document.getElementById('totalharga').innerHTML= 'Total Harga: ' + harga*jumlah;
 }    

@@ -121,10 +121,23 @@ class Dorayaki extends Controller {
 
     public function buy($id = null)
     {
+
+        if (!isset($_SESSION['username'])){
+            header('Location: ' . BASEURL);
+        }
+
         if (is_null($id)){
             header('Location: ' . BASEURL);
             exit;
         }
+
+        if (isset($_POST['edit']) || isset($_POST['buy'])){
+            $id = $_POST['iddora'];
+            $jml = $_POST['jmlstok'];
+            $result = $this->model('Dorayaki_model')->updateStok($id, $jml);
+            die;
+        }
+
 
         $data = [
             'title' => 'Pembelian',
@@ -152,6 +165,11 @@ class Dorayaki extends Controller {
         $this->view('templates/header', $data);
         $this->view('templates/navbar', $data);
         $this->view('dorayaki/pembelian', $data);
-        $this->view('templates/header', $data);
+        $this->view('templates/footer', $data);
+    }
+
+    public function ubah()
+    {
+        
     }
 }
