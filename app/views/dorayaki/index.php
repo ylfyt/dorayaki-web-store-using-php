@@ -20,6 +20,12 @@
                 <?=$data['dorayaki']['deskripsi']?>
                 </div>
             </div>
+            <?php if ($data['is-admin']) :?>
+                <form action="<?= BASEURL ?>/dorayaki/delete/" method="post">
+                    <input type="hidden" name='id' value="<?=$data['dorayaki']['id']?>">
+                    <input type="submit" name='delete' value="Delete" onclick="return confirm('Yakin?');">
+                </form>
+            <?php endif; ?>
         </div>
     </div>
 </div>

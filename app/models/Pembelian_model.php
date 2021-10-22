@@ -23,4 +23,18 @@ class Pembelian_model {
         $this->db->execute();
         return $this->db->rowAffected();
     }
+
+    public function deleteAllDorayakiRecord($dorayaki_id)
+    {
+        $query = "DELETE FROM $this->table 
+        WHERE dorayaki_id =:dorayaki_id";
+        $bind = [
+            'dorayaki_id' => $dorayaki_id
+        ];
+
+        $this->db->query($query, $bind);
+        $this->db->execute();
+
+        return $this->db->rowAffected();
+    }
 }

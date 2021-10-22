@@ -36,5 +36,6 @@
         </form>
         
         <a href="<?php echo(BASEURL . '/dorayaki/' . $data['dorayaki']['id'])?>">Batal</a>
+    
     </div>
 </div>

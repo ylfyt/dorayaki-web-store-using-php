@@ -36,7 +36,7 @@ class Dorayaki extends Controller {
         $this->view('templates/header', $data);
         $this->view('templates/navbar', $data);
         $this->view('dorayaki/index', $data);
-        $this->view('templates/header', $data);
+        $this->view('templates/footer', $data);
     }
 
     public function add()
@@ -194,8 +194,33 @@ class Dorayaki extends Controller {
         $this->view('templates/footer', $data);
     }
 
-    public function ubah()
+    public function delete()
     {
-        
+        if (!isset($_SESSION['username'])){
+            header('Location: ' . BASEURL);
+            exit;
+        }
+
+        if (!isset($_POST['delete'])){
+            header('Location: ' . BASEURL);
+        }
+        else{
+            $id = $_POST['id'];
+
+            $result = $this->model('Pembelian_model')->deleteAllDorayakiRecord($id);
+
+            $result = $this->model('Dorayaki_model')->deleteDorayaki($id);
+            if ($result == 1){
+                Flasher::setFlash('Dorayaki berhasil dihapus');
+                header('Location: ' . BASEURL);
+                exit;
+            }
+            else{
+                Flasher::setFlash('Dorayaki gagal dihapus');
+            }
+
+            header('Location: ' . BASEURL . '/dorayaki/' . $id);
+            exit;
+        }
     }
 }

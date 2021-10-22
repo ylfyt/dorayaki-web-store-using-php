@@ -128,17 +128,21 @@ class Dorayaki_model {
         return $result;
     }
 
-    public function deleteDorayaki($nama, $id)
+    public function deleteDorayaki($id)
     {
         $query = "DELETE FROM dorayaki 
-        WHERE nama = $nama";
+        WHERE id = :id";
+
+        $bind = [
+            'id' => $id
+        ];
 
         // $query = "DELETE FROM perubahan 
         // WHERE Dorayaki_id = $id";
 
-        $this->db->query($query);
-        $result = $this->db->single();
-        return $result;
+        $this->db->query($query, $bind);
+        $this->db->execute();
+        return $this->db->rowAffected();
     }
 
     public function decreaseDorayaki($id, $jml)
